@@ -1,29 +1,21 @@
-import kotlin.math.*
 import java.io.File
+import kotlin.math.roundToInt
 
-const val TAVERN_NAME = "Taernyl's Folly"
-var playerDracoin: Double = 30.0
-var playerGold: Int = (playerDracoin*1.43).toInt()
-var playerSilver: Int = round(((playerDracoin*1.43) % 1 * 100)).toInt()
-
+const val TAVERN_NAME: String = "Taernyl's Folly"
+var playerGold = 10
+var playerSilver = 10
 val patronList = mutableListOf("Eli", "Mordoc", "Sophie")
 val lastName = listOf("Ironfoot", "Fernsworth", "Baggins")
 val uniquePatrons = mutableSetOf<String>()
 val menuList = File("./src/main/data/tavern-menu-items.txt")
     .readText()
     .split("\n")
+val patronGold = mutableMapOf<String, Double>()
 
 fun main() {
-//    if (patronList.contains("Eli")) {
-//        println("The tavern master says: Eli's in the back playing cards.")
-//    } else {
-//        println("The tavern master says: Eli isn't here.")
-//    }
-//    if (patronList.containsAll(listOf("Sophie", "Mordoc"))) {
-//        println("The tavern master says: Yea, they're seated by the stew kettle.")
-//    } else {
-//        println("The tavern master says: Nay, they departed hours ago.")
-//    }
+
+    printMenu(menuList)
+
     (0..9).forEach {
         val first = patronList.random()
         val last = lastName.random()
@@ -31,41 +23,37 @@ fun main() {
         uniquePatrons += name
     }
 
-    uniquePatrons.run(::println)
+//    uniquePatrons.run(::println)
 
     var orderCount = 0
-    while (orderCount <= 9) {
+    while (orderCount <= 3) {
         placeOrder(
             uniquePatrons.random(),
             menuList.random())
         orderCount++
     }
+//    patronGold.run(::println)
 }
 
 private fun displayBalance() {
     println("Player's purse balance: Gold: $playerGold , Silver: $playerSilver")
-    println("Player's purse balance Dracoin: ${"%.4f".format(playerDracoin)}")
 }
 
 fun performPurchase(price: Double): Boolean {
     displayBalance()
     val totalPurse: Double = playerGold + playerSilver / 100.0
-    val totalPurseDracoin = playerDracoin
     if (totalPurse<price){
         println("Bartender: Sorry, you haven't money...")
         return false
     }
     println("Total purse: $totalPurse")
-    println("Total purse Dracoin: $totalPurseDracoin")
     println("Purchasing item for $price")
     val remainingBalance = totalPurse - price
     val remainingBalanceDracoin  = remainingBalance/1.43
     println("Remaining balance: ${"%.2f".format(remainingBalance)}")
     println("Remaining balance Dracoin: ${"%.4f".format(remainingBalanceDracoin)}")
-    val remainingGold = remainingBalance
     val remainingSilver = (remainingBalance % 1 * 100).roundToInt()
-    playerDracoin = remainingBalanceDracoin
-    playerGold = remainingGold.toInt()
+    playerGold = remainingBalance.toInt()
     playerSilver = remainingSilver
     displayBalance()
     return true
@@ -104,3 +92,30 @@ private fun toDragonSpeak(phrase: String) =
             else -> it.value
         }
     }
+
+private fun printDot(lenName: Int, mlName: Int){
+    val numDots = 10 + mlName - lenName
+    var cntr = 0
+    while (cntr<numDots){
+        print(".")
+        cntr++
+    }
+}
+private fun printMenu(menuList: List<String>){
+    var mlName = 0//max length name
+    println("*** Welcome to Taernyl's Folly ***")
+    menuList.forEach {
+        val name = it.split(",")[1]
+        if(mlName < name.length){
+            mlName = name.length
+        }
+    }
+    menuList.forEach {
+        val (type, name, price) = it.split(",")
+        println("           ~[$type]~")
+        print(name)
+        printDot(name.length, mlName)
+        println(price)
+    }
+
+}
