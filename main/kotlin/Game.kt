@@ -1,17 +1,18 @@
 
 fun main(args: Array<String>) {
-    val name = "Madrigal"
+
     var healthPoints = 89
     var isBlessed = true
     val isImmortal = false
     val player = Player()
+    player.name = "estragon"
     player.castFireball()
     // Аура
     val auraColor = auraColor(isBlessed, healthPoints, isImmortal)
     // Состояние игрока
     val healthStatus = formatHealthStatus(healthPoints, isBlessed)
 
-    printPlayerStatus(auraColor, isBlessed, name, healthStatus)
+    printPlayerStatus(auraColor, isBlessed, player.name, healthStatus)
 
 }
 
