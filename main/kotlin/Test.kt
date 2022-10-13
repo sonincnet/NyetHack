@@ -1,10 +1,10 @@
 import java.io.File
 import java.util.*
+import java.net.URL
 
 fun main() {
- val mp = mutableSetOf<String>("hello", "world")
- mp.remove("hello")
- println(mp)
+   val wantedURL = "https://esi.evetech.net/v1/fw/stats/"
+   URL(wantedURL).readText().run(::println)
 
 }
 
