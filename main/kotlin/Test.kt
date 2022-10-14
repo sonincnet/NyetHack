@@ -1,11 +1,9 @@
 import java.io.File
 import java.util.*
+import java.net.URL
 
 fun main() {
- val mp = mutableSetOf<String>("hello", "world")
- mp.remove("hello")
- println(mp)
+    val url = URL("https://esi.evetech.net/dev/markets/groups/208")
+    url.readText().run(::println)
 
 }
-
-//fun tf(args: String) = args.split('/')
