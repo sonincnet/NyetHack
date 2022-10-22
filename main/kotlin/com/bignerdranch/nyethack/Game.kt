@@ -1,4 +1,6 @@
-fun main() {
+package com.bignerdranch.nyethack
+fun main(args: Array<String>) {
+
     runSimulation()
 }
 
@@ -17,3 +19,4 @@ private fun cGreetingFunction(): (String) -> String {
         "Welcome to SimVillage, $playerName! (copyright $currentYear)"
     }
 }
+

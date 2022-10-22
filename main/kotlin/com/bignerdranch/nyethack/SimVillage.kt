@@ -1,4 +1,4 @@
-//Функциональный "тип" var name: "()-> type"
+package com.bignerdranch.nyethack//Функциональный "тип" var name: "()-> type"
 
 fun main() {
 
