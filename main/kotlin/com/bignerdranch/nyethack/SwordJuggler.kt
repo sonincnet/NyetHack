@@ -7,12 +7,12 @@ fun main() {
         swordsJuggling = 2
     }
 //
-//    com.bignerdranch.nyethack.proficiencyCheck(swordsJuggling)
+//    proficiencyCheck(swordsJuggling)
 //    swordsJuggling = swordsJuggling!!.plus(1)
 //    println("You juggle $swordsJuggling swords!")
 
 }
 
 fun proficiencyCheck(swordsJuggling: Int?) {
-    swordsJuggling ?: throw IllegalStateException("com.bignerdranch.nyethack.Player cannot juggle swords")
+    swordsJuggling ?: throw IllegalStateException("Player cannot juggle swords")
 }

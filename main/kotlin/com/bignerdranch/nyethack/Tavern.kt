@@ -7,7 +7,7 @@ const val TAVERN_NAME: String = "Taernyl's Folly"
 val patronList = mutableListOf("Eli", "Mordoc", "Sophie")
 val lastName = listOf("Ironfoot", "Fernsworth", "Baggins")
 val uniquePatrons = mutableSetOf<String>()
-val menuList = File("./src/com.bignerdranch.nyethack.main/data/tavern-menu-items.txt")
+val menuList = File("./src/main/resources/data/tavern-menu-items.txt")
     .readText()
     .split("\n")
 val patronGold = mutableMapOf<String, Double>()
