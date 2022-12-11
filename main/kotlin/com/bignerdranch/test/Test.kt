@@ -1,8 +1,3 @@
-//import com.bignerdranch.nyethack.Player
-import java.io.File
-import java.util.*
-import java.net.URL
-
 private var testVal = "fdsd"
 
 

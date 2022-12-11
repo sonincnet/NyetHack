@@ -20,3 +20,4 @@ private fun cGreetingFunction(): (String) -> String {
     }
 }
 
+//test 11.12.2022
