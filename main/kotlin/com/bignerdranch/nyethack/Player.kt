@@ -20,13 +20,14 @@ class Player(_name: String,
             private set(value) {
             field = value.trim()
         }
-    val hometown = delEscape(selectHometown())
+    val hometown = lazy { delEscape(selectHometown()) }
+    var currentPosition = Coordinate(0, 0)
     private fun selectHometown() = File("./src/main/resources/data/towns.txt")
         .readText()
         .split("\n")
         .random()
 
-    //Crutch. When read town.txt, sity's name reading with \r char
+    //Crutch. When read town.txt, city's name reading with \r char
     private fun delEscape(town: String): String{
         var _town = ""
         if(town.contains("\r")){
